@@ -1,5 +1,11 @@
 export default function createIteratorObject(report) {
-  while (report) {
-    console.log('Placeholder');
-  }
+  const employees = Object.values(report.allEmployees).flatMap(department => department);
+
+  return {
+    [Symbol.iterator]: function* () {
+      for (const employee of employees) {
+        yield employee;
+      }
+    }
+  };
 }
